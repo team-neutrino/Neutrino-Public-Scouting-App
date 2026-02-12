@@ -54,6 +54,35 @@ function alliancePick(alliance) {
   console.log(extraData);
 }
 
+function replaceBackside() {
+  var backsideAction = actionList.indexOf("Backside");
+
+  if (backsideAction > -1) {
+    actionList.splice(backsideAction, 1);
+  }
+  var backsideCompressed = compressedList.indexOf(1);
+
+  if (backsideCompressed > -1) {
+    compressedList.splice(backsideCompressed, 1);
+  }
+
+  console.log(actionList);
+  updateLog();
+
+}
+
+function replaceClimb(action) {
+  var index = actionList.indexOf(action);
+  if (index > -1) {
+    actionList.splice(index, 1);
+  }
+  var compressed = compressedList.indexOf(index);
+  compressedList.splice(compressed, 1);
+
+  console.log(actionList);
+  updateLog();
+}
+
 function replaceClimb(action, number) {
   var index19 = actionList.indexOf("Fail");
   var index20 = actionList.indexOf("L3L");
@@ -233,7 +262,7 @@ function displayBoxData() {
     document.getElementById('matchNumberBox').value = extraData[1];
   }
   if (extraData[3] !== undefined) {
-    document.getElementById('coment').value = extraData[3];
+    document.getElementById('comment').value = extraData[3];
   }
 }
 
