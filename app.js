@@ -33,11 +33,13 @@ updateAvail: This was created to enable/disable (validation) scoring buttons bas
 
 function addAction(action, number) { //Used for buttons that have a data validation script
   actionList.push(action); //Add it to the actionList (what the scouter sees on the app)
-  compressedList.push(number); //Add it to the compressedList (QR Code)//
-  updateLog(); //Update what the scouter sees on the app (actionList)
+  compressedList.push(number); //Add it to the compressedList (QR Code)
+  if (document.getElementById('teamLog1') !== null) {
+    updateLog(); //Update what the scouter sees on the app (actionList)
+    updateScore();
+  }
   saveData();
   console.log(compressedList);
-  updateScore();
 }
 
 function updateScore() {
@@ -60,15 +62,13 @@ function replaceBackside() {
   if (backsideAction > -1) {
     actionList.splice(backsideAction, 1);
   }
-  var backsideCompressed = compressedList.indexOf(1);
+  var backsideCompressed = compressedList.indexOf(8);
 
   if (backsideCompressed > -1) {
     compressedList.splice(backsideCompressed, 1);
   }
 
   console.log(actionList);
-  updateLog();
-
 }
 
 function replaceClimb(action) {
@@ -184,10 +184,9 @@ function replaceClimb(action, number) {
   }
 
   console.log(actionList);
-  updateLog();
 }
 
-function GO(iPadID, matchsaver, scoutsaver) {
+function GO(iPadID, matchsaver, scoutsaver, page) {
   getBoxData();
   var allClear = true;
   var team = document.getElementById("teamNum");
@@ -374,7 +373,7 @@ function reset(action) {
 }
 
 function load(windowLocation) {
-  saveData()
+  saveData();
   window.location.href = `./${windowLocation}.html`;
 }
 
