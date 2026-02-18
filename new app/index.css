@@ -1,0 +1,49 @@
+.main-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background-image: url("background.png");
+}
+
+.header-picture-holder {
+  display: flex;
+  justify-content: center;
+  height: 20%;
+}
+
+.header-picture-holder > img {
+  filter: drop-shadow(0px 0px 50px rgb(0, 0, 0));
+}
+
+.input-holder {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 20%;
+}
+
+.third-size-holder {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: calc(100%/3);
+}
+
+.red-blue-alliance-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 40%;
+}
+
+body {
+  background-color: aquamarine;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}

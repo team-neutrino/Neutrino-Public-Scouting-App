@@ -1,0 +1,11 @@
+button {
+  height: 10vh;
+  width: 12vw;
+}
+
+input {
+  height: 5vh;
+  width: 8vw;
+  background-color: black;
+  border: 5px solid rgba(255, 255, 255, 0.85);
+}
