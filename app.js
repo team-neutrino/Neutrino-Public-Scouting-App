@@ -90,6 +90,10 @@ function updateClimb(name) {
   document.getElementById(qrClimb).style.backgroundColor = "#508ddbff"; // add new style
 }
 
+function getQrClimb() {
+  return sessionStorage.getItem("qrClimb");
+}
+
 function GO(iPadID, matchsaver, scoutsaver, page) {
   getBoxData();
   var allClear = true;
@@ -130,6 +134,7 @@ function saveData() {
   sessionStorage.setItem("compressedList", JSON.stringify(compressedList));
   sessionStorage.setItem("extraData", JSON.stringify(extraData));
   sessionStorage.setItem("score", score.toString());
+  sessionStorage.setItem("qrClimb", qrClimb);
 }
 
 function getData() {
