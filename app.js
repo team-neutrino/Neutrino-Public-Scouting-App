@@ -1,10 +1,9 @@
 const pointList = [1, 4, 3]
 
 let extraData = []; //['teamNum', 'matchNum', 'scout', 'comment', 'alliance pick']
-var matchNumber = []; //Match Number
-var teamNumber = []; //Team Number
 var actionList = [""]; //This is the list that populates the log with human friendly text.
 var compressedList = []; //This is the list that collects all the IDs for the QR Code.
+var climbList = ["", false, "", false]; //['auton climb', auton backside, 'endgame climb', endgame backside]
 var comments = ""; //Comments Box
 var blue1 = [1, 2];
 var blue2 = [3, 4];
@@ -19,7 +18,6 @@ var team = "";
 var match = "";
 var savescout = sessionStorage.getItem("scoutInitials");
 var score = 0;
-var climbList = ["", false, "", false];
 
 /* Function List
 --- Direct Button Functions ---
