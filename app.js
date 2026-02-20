@@ -1,4 +1,4 @@
-const pointList = [1,4,3]
+const pointList = [1, 4, 3]
 
 let extraData = []; //['teamNum', 'matchNum', 'scout', 'comment', 'alliance pick']
 var matchNumber = []; //Match Number
@@ -6,12 +6,12 @@ var teamNumber = []; //Team Number
 var actionList = [""]; //This is the list that populates the log with human friendly text.
 var compressedList = []; //This is the list that collects all the IDs for the QR Code.
 var comments = ""; //Comments Box
-var blue1 = [1,2];
-var blue2 = [3,4];
-var blue3 = [5,6];
-var red1 = [7,8];
-var red2 = [9,10];
-var red3 = [11,12];
+var blue1 = [1, 2];
+var blue2 = [3, 4];
+var blue3 = [5, 6];
+var red1 = [7, 8];
+var red2 = [9, 10];
+var red3 = [11, 12];
 var ipadID = localStorage.getItem("iPadId");
 var incmatchnumber = "1";
 var matchnum = 1;
@@ -19,7 +19,7 @@ var team = "";
 var match = "";
 var savescout = sessionStorage.getItem("scoutInitials");
 var score = 0;
-
+var qrClimb = "notInitialized";
 
 /* Function List
 --- Direct Button Functions ---
@@ -33,16 +33,18 @@ updateAvail: This was created to enable/disable (validation) scoring buttons bas
 
 function addAction(action, number) { //Used for buttons that have a data validation script
   actionList.push(action); //Add it to the actionList (what the scouter sees on the app)
-  compressedList.push(number); //Add it to the compressedList (QR Code)//
-  updateLog(); //Update what the scouter sees on the app (actionList)
+  compressedList.push(number); //Add it to the compressedList (QR Code)
+  if (document.getElementById('teamLog1') !== null) {
+    updateLog(); //Update what the scouter sees on the app (actionList)
+    updateScore();
+  }
   saveData();
   console.log(compressedList);
-  updateScore();
 }
 
 function updateScore() {
   var currentScore = 0
-  for(i = 0; i < compressedList.length; i++){
+  for (i = 0; i < compressedList.length; i++) {
     currentScore += pointList[compressedList[i]]
   }
   score = currentScore;
@@ -52,6 +54,44 @@ function updateScore() {
 function alliancePick(alliance) {
   extraData[4] = alliance;
   console.log(extraData);
+}
+
+function replaceBackside() {
+  var backsideAction = actionList.indexOf("Backside");
+
+  if (backsideAction > -1) {
+    actionList.splice(backsideAction, 1);
+  }
+  var backsideCompressed = compressedList.indexOf(8);
+
+  if (backsideCompressed > -1) {
+    compressedList.splice(backsideCompressed, 1);
+  }
+
+  console.log(actionList);
+}
+
+function selectBackside(boxId) {
+  if (compressedList.indexOf(8) > -1) {
+    replaceBackside();
+    document.getElementById(boxId).style.backgroundColor = "#9fdd43";
+  } else {
+    addAction('Backside', 8);
+    document.getElementById(boxId).style.backgroundColor = "#40591bff";
+  }
+  console.log(actionList);
+}
+
+function updateClimb(name) {
+  if (!(qrClimb === 'notInitialized')) {
+    document.getElementById(qrClimb).style.backgroundColor = "#8ac3d5"; // get rid of old style
+  }
+  qrClimb = name;
+  document.getElementById(qrClimb).style.backgroundColor = "#508ddbff"; // add new style
+}
+
+function getQrClimb() {
+  return sessionStorage.getItem("qrClimb");
 }
 
 function GO(iPadID, matchsaver, scoutsaver, page) {
@@ -94,6 +134,7 @@ function saveData() {
   sessionStorage.setItem("compressedList", JSON.stringify(compressedList));
   sessionStorage.setItem("extraData", JSON.stringify(extraData));
   sessionStorage.setItem("score", score.toString());
+  sessionStorage.setItem("qrClimb", qrClimb);
 }
 
 function getData() {
@@ -129,7 +170,7 @@ function displayBoxData() {
     document.getElementById('matchNumberBox').value = extraData[1];
   }
   if (extraData[3] !== undefined) {
-    document.getElementById('coment').value = extraData[3];
+    document.getElementById('comment').value = extraData[3];
   }
 }
 
@@ -241,7 +282,7 @@ function reset(action) {
 }
 
 function load(windowLocation) {
-  saveData()
+  saveData();
   window.location.href = `./${windowLocation}.html`;
 }
 

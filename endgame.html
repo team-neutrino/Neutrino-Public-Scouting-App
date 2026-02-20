@@ -4,48 +4,66 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Endgame</title>
+  <title>Endgame Climb</title>
   <link rel="styleSheet" type="text/css" href="endgame.css">
   <link rel="styleSheet" type="text/css" href="styleSheet.css">
 </head>
 
 <body id='body' style="overflow: scroll;" onload="loadPage()">
   <table class="endGameTable" id="table">
-    <tr class="top" id="row1">
+    <tr class="yess id=" row1>
       <th class="topSideBox">
         <input class="infoBox" type="text" name="teamBox" id="teamNumberBox" readonly />
       </th>
-      <th colspan="1" class="header">Endgame</th>
+      <th colspan="3" class="header">Endgame
+      </th>
       <th class="topSideBox">
         <input class="infoBox" type="text" name="matchBox" id="matchNumberBox" readonly />
       </th>
     </tr>
     <tr id="row2">
-      <td colspan="3">
-        <textarea class="comments" placeholder="Unleash your imagination" onchange="commentEdit(this.value)"
-          id="coment"></textarea>
+      <td colspan="5">
+        <button class="largeButton" id="L3L" onclick="updateClimb(this.id)">L3L</button>
+        <button class="largeButton" id="L3M" onclick="updateClimb(this.id)">L3M</button>
+        <button class="largeButton" id="L3R" onclick="updateClimb(this.id)">L3R</button>
+        <button class="sideButton" id="backsideButton" onclick="selectBackside(this.id)">Backside</button>
       </td>
+
     </tr>
     <tr id="row3">
-      <td></td>
-      <td rowspan="2" colspan="1">
-        <textarea readonly id="teamLog1" class="terminalEndgame" placeholder="Nothing to undo"></textarea>
-        <br>
-        <textarea readonly id="teamLog2" class="score" placeholder="Nothing yet"></textarea>
-        <br>
-        <button class="undo" id="undo" onclick="Undo()">Undo</button>
+      <td colspan="5">
+        <button class="largeButton" id="L2L" onclick="updateClimb(this.id)">L2L</button>
+        <button class="largeButton" id="L2M" onclick="updateClimb(this.id)">L2M</button>
+        <button class="largeButton" id="L2R" onclick="updateClimb(this.id)">L2R</button>
+        <button class="sideButton" id="noTry" onclick="updateClimb(this.id)">No Attempt</button>
       </td>
     </tr>
-    <tr class="footer" id="row4">
-      <td>
-        <button class="backForth nextColor" id="next"
-          onclick="load('teleop')">&larr;</button>
+    <tr id="row4">
+      <td colspan="5">
+        <button class="largeButton" id="L1L" onclick="updateClimb(this.id)">L1L</button>
+        <button class="largeButton" id="L1M" onclick="updateClimb(this.id)">L1M</button>
+        <button class="largeButton" id="L1R" onclick="updateClimb(this.id)">L1R</button>
       </td>
+    </tr>
+    <tr id="row5">
+      <td colspan="5">
+        <button class="largeButton" id="Fail1" onclick="updateClimb(this.id)">Failed</button>
+        <button class="largeButton" id="Fail2" onclick="updateClimb(this.id)">Failed</button>
+        <button class="largeButton" id="Fail3" onclick="updateClimb(this.id)">Failed</button>
+      </td>
+    </tr>
+    <tr class="footer" id="row7">
       <td>
-        <button class="backForth nextColor" id="next"
-          onclick="load('qr')">&rarr;</button>
+        <button class="backForth nextColor" id="next" onclick="load('teleop')">&larr;</button>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <button class="backForth nextColor" id="next" onclick="load('qr')">&rarr;</button>
       </td>
     </tr>
   </table>
 </body>
+
 </html>
