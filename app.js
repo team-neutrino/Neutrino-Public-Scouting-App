@@ -45,11 +45,18 @@ lastUpdatedTimestamp = 0
 function addFuel(type, amt) {
   lastPosition = compressedList[compressedList.length - 1];
 
+  if (!lastPosition) {
+    compressedList.push([type, amt, [amt], false]);
+    lastUpdatedTimestamp = Date.now();
+    updateLog();
+    return;
+  };
+
   lastType = lastPosition[0];
   lastScore = lastPosition[1];
   lastScoreTypes = lastPosition[2];
 
-  if (Date.now() - lastUpdatedTimestamp > TIMEOUT && !finished) {
+  if (Date.now() - lastUpdatedTimestamp > TIMEOUT) {
     lastPosition[3] = true;
   }
 
@@ -59,21 +66,25 @@ function addFuel(type, amt) {
 
   finished = lastPosition[3];
 
+  console.log(finished)
+  console.log(lastPosition)
+
   if (!finished) {
     compressedList[compressedList.length - 1][1] += amt;
-    compressedList[compressedList.length - 1][3].push(amt);
+    compressedList[compressedList.length - 1][2].push(amt);
   } else {
     compressedList.push([type, amt, [amt], false]);
   }
 
   lastUpdatedTimestamp = Date.now();
   updateLog();
+  updateScore();
 }
 
 function updateScore() {
   var currentScore = 0
   for (i = 0; i < compressedList.length; i++) {
-    // currentScore += pointList[compressedList[i]]
+    currentScore += compressedList[i][1]
   }
   score = currentScore;
   document.getElementById("teamLog2").value = score;
@@ -185,7 +196,7 @@ function displayBoxData() {
     document.getElementById('matchNumberBox').value = extraData[1];
   }
   if (extraData[3] !== undefined) {
-    document.getElementById('comment').value = extraData[3];
+    // document.getElementById('comment').value = extraData[3];
   }
 }
 
@@ -195,18 +206,38 @@ function updateLog() {
 
   logText = ""
 
-  for (period in compressedList) {
+  console.log(compressedList.length)
+
+  for (let i = compressedList.length - 1; i >= 0; i--) {
+    period = compressedList[i];
+    console.log(period)
+
     if (period[3]) { // if period finished
-      logText = logText + "Fuel scoring period ended! Scored " + period[1] + " fuel.\n"
+      if (period[0] === 1 || period[0] === 3) {
+        logText = logText + "Fuel passing period ended! Passed " + period[1] + " fuel.\n"
+      } else {
+        logText = logText + "Fuel scoring period ended! Scored " + period[1] + " fuel.\n"
+      }
+      console.log(logText)
     }
 
     score = period[1]
 
-    for (amt in compressedList[2]) {
-      logText = logText + "+" + amt + " Fuel (" + score + " total)\n"
+    for (let i = period[2].length - 1; i >= 0; i--) {
+      amt = period[2][i]
+      if (period[0] === 1 || period[0] === 3) {
+        logText = logText + "Passed " + amt + " Fuel (" + score + " total)\n"
+      } else {
+        logText = logText + amt + " Fuel (" + score + " total)\n"
+      }
       score -= amt
     }
+    console.log(logText)
   }
+
+  console.log(logText);
+
+  document.getElementById("teamLog1").value = logText;
 }
 
 function commentEdit(comment) {
@@ -233,6 +264,25 @@ function commentEdit(comment) {
 //     console.log("Nothing to undo");
 //   }
 // }
+
+function Undo() {
+  lastPosition = compressedList[compressedList.length - 1];
+
+  if (lastPosition) {
+    lastScored = lastPosition[2].pop();
+    lastPosition[1] -= lastScored;
+  }
+
+  updateLog();
+  updateScore();
+}
+
+function UndoAll() {
+  lastPosition = compressedList.pop()
+
+  updateLog();
+  updateScore();
+}
 
 function pullIPadID() {
   document.getElementById("iPadIDarea").value = localStorage.getItem("iPadId");
@@ -356,9 +406,9 @@ function toQuotes() {
     insertQuote.innerHTML += "<br><br><strong>" + author + "</strong>";
     insertQuote.innerHTML += "<button onclick='window.location.href = `./index.html`' class='continuieButton' id='contineButton'>Continue</button>";
     insertQuote.innerHTML += "<strong>Score: " + score + "</strong>";
-    var sums = Array(6).fill(0); //Compress List
-    for (const item of compressedList) {
-      sums[item]++;
+    var sums = Array(4).fill(0); //Compress List
+    for (const period of compressedList) {
+      sums[period[0]] += period[1];
     }
     localStorage.setItem("oldCompList" + extraData[1], sums);
     localStorage.setItem("oldExtraData" + extraData[1], extraData);
