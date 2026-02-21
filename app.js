@@ -84,7 +84,9 @@ function addFuel(type, amt) {
 function updateScore() {
   var currentScore = 0
   for (i = 0; i < compressedList.length; i++) {
-    currentScore += compressedList[i][1]
+    if (compressedList[i][0] === 0 || compressedList[i][0] === 2) {
+      currentScore += compressedList[i][1];
+    }
   }
   score = currentScore;
   document.getElementById("teamLog2").value = score;
