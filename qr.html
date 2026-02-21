@@ -49,7 +49,7 @@
 
             document.getElementById('teamNumberBox').value = extraData[0];
             document.getElementById('matchNumberBox').value = extraData[1];
-            extraData[2] = getQrClimb();
+            var climb = getList("climbList");
 
             qrcode.clear();
             qrcode.makeCode(
@@ -65,11 +65,7 @@
                 "\t" +
                 extraData[5] +
                 "\t" +
-                extraData[6] +
-                "\t" +
-                extraData[7] +
-                "\t" +
-                extraData[8] +
+                climb +
                 "\t" +
                 sums.join(",")
             );
@@ -114,7 +110,7 @@
     <style id="changeStyle"></style>
 </head>
 
-<body onload="initQRCode()" id="body">
+<body onload="initQRCode();loadPage()" id="body">
     <table>
         <tr class="top" id="row1">
             <th class="topSideBox">
@@ -134,7 +130,7 @@
         </tr>
         <tr class="footer" id="row3">
             <td>
-                <button class="backForth nextColor" id="next" onclick="load('endgame')">&larr;</button>
+                <button class="backForth nextColor" id="next" onclick="load('endgameClimb')">&larr;</button>
             </td>
             <td>
                 <button id="regenButton" onclick="regenOldQR()">Regen</button>
