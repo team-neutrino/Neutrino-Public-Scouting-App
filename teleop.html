@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <title>teleop</title>
@@ -8,38 +7,96 @@
     <link rel="styleSheet" type="text/css" href="styleSheet.css">
     <link rel="styleSheet" type="text/css" href="teleop.css">
 </head>
-
 <body class="teleopBody" style="overflow: scroll;" onload="loadPage()">
     <table id="table">
         <tr class="top" id="row1">
-            <th class="topSideBox">
+            <th class="topSideBox" colspan="2">
                 <input class="infoBox" type="text" name="teamBox" id="teamNumberBox" readonly />
             </th>
-            <th colspan="1" class="header" id="color">T<span style="display: inline-block;">e</span>leop</th>
-            <th class="topSideBox">
+            <th colspan="1" class="header" id="color" rowspan="2">Teleop</th>
+            <th class="topSideBox" colspan="2">
                 <input class="infoBox" type="text" name="matchBox" id="matchNumberBox" readonly />
             </th>
         </tr>
-        <tr>
-            <td rowspan='1' colspan='1'></td>
-            <td rowspan="2" colspan="1">
+        <tr class="subHeaderRow" id="row2">
+            <td colspan="2" rowspan="2" class="subHeader">score</td>
+            <td colspan="2" rowspan="2" class="subHeader">pass</td>
+        </tr>
+        <tr class="subHeaderRow">
+            <td rowspan="6">
                 <textarea readonly id="teamLog1" class="terminal" placeholder="Nothing to undo"></textarea>
                 <br>
                 <textarea readonly id="teamLog2" class="score" placeholder="Nothing yet"></textarea>
                 <br>
                 <button class="undo" id="undo" onclick="Undo()">Undo</button>
             </td>
-            <td rowspan='1' colspan='1'></td>
         </tr>
-        <tr class="footer">
+        <tr id="row3">
+            <td class="largeColumm">
+                <button class="plusButton scoreButton">10</button>
+            </td>
+            <td class="smallColumm">
+                <button class="minusButton">-10</button>
+            </td>
+            <td class="smallColumm">
+                <button class="minusButton">-10</button>
+            </td>
+            <td class="largeColumm">
+                <button class="plusButton passButton">10</button>
+            </td>
+        </tr>
+        <tr id="row4">
             <td>
-                <button onclick="load('autonClimb')">&larr;</button>
+                <button class="plusButton scoreButton">8</button>
             </td>
             <td>
-                <button onclick="load('endgameClimb')">&rarr;</button>
+                <button class="minusButton">-8</button>
+            </td>
+            <td>
+                <button class="minusButton">-8</button>
+            </td>
+            <td>
+                <button class="plusButton passButton">8</button>
+            </td>
+        </tr>
+        <tr id="row5">
+            <td>
+                <button class="plusButton scoreButton">5</button>
+            </td>
+            <td>
+                <button class="minusButton">-5</button>
+            </td>
+            <td>
+                <button class="minusButton">-5</button>
+            </td>
+            <td>
+                <button class="plusButton passButton">5</button>
+            </td>
+        </tr>
+        <tr id="row6">
+            <td>
+                <button class="plusButton scoreButton">1</button>
+            </td>
+            <td>
+                <button class="minusButton">-1</button>
+            </td>
+            <td>
+                <button class="minusButton">-1</button>
+            </td>
+            <td>
+                <button class="plusButton passButton">1</button>
+            </td>
+        </tr>
+        <tr class="footer" id="row7">
+            <td>
+                <button class="backForth nextColor" id="back" onclick="load('autonClimb')">&larr;</button>
+            </td>
+            <td></td>
+            <td></td>
+            <td>
+                <button class="backForth nextColor" id="next" onclick="load('endgameClimb')">&rarr;</button>
             </td>
         </tr>
     </table>
 </body>
-
 </html>
