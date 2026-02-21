@@ -1,8 +1,9 @@
+
 table,
 th,
 tr,
 td {
-    border: 1px solid gray;
+    border: none;
 }
 
 .subHeader {
@@ -15,7 +16,7 @@ td {
 }
 
 .smallColumm {
-    width: 5vw;
+    width: 2.5vw;
 }
 
 .largeColumm {
@@ -27,9 +28,16 @@ td {
     background-color: red;
 }
 
-
 .plusButton {
     width: 90%;
+}
+
+.passButton{
+    background-color: rgb(36, 211, 36);
+    color: black;
+}
+
+.scoreButton{
     background-color: orange;
 }
 
@@ -57,5 +65,4 @@ td {
 
 .no-border{
     border:none;
->>>>>>> Stashed changes
 }
