@@ -99,20 +99,20 @@ function alliancePick(alliance) {
 
 function selectBackside(boxId, page) {
   var backsideIndex = 3;
-  if (page === "auton") {
+  if (page === "autonClimb") {
     backsideIndex = 1;
   }
   climbList[backsideIndex] = !climbList[backsideIndex]
   if (climbList[backsideIndex]) {
-    document.getElementById(boxId).style.backgroundColor = "#547522";
+    document.getElementById(boxId).style.backgroundColor = "rgb(159, 221, 67)";
   } else {
-    document.getElementById(boxId).style.backgroundColor = "#9fdd43";
+    document.getElementById(boxId).style.backgroundColor = "rgb(227, 137, 20)";
   }
 }
 
 function updateClimb(name, page) {
   var climbIndex = 2;
-  if (page === "auton") {
+  if (page === "autonClimb") {
     climbIndex = 0;
   }
 
@@ -120,7 +120,7 @@ function updateClimb(name, page) {
     document.getElementById(climbList[climbIndex]).style.backgroundColor = "#8ac3d5"; // get rid of old style
   }
   climbList[climbIndex] = name;
-  document.getElementById(climbList[climbIndex]).style.backgroundColor = "#508ddbff"; // add new style
+  document.getElementById(climbList[climbIndex]).style.backgroundColor = "rgb(159, 221, 67)"; // add new style
 }
 
 function GO(iPadID, matchsaver, scoutsaver, page) {
@@ -184,10 +184,26 @@ function getList(name) {
   return JSON.parse(sessionStorage.getItem(name));
 }
 
-function loadPage() {
+function loadPage(page) {
   getData();
   displayBoxData();
+  if(document.getElementById("teamLog2") !== null){
   document.getElementById("teamLog2").value = score;
+  }
+  if (page === 'autonClimb' || page === 'endgameClimb'){
+    loadClimb(page)
+  }
+}
+
+function loadClimb(page) {
+  var climbModifier = 2;
+  if(page === 'autonClimb'){
+    climbModifier = 0;
+  }
+  updateClimb(climbList[climbModifier], page);
+  if(climbList[1 + climbModifier] == true){
+    document.getElementById("backsideButton").style.backgroundColor = "rgb(159, 221, 67)";
+  }
 }
 
 function displayBoxData() {
@@ -197,8 +213,8 @@ function displayBoxData() {
   if (extraData[1] !== undefined) {
     document.getElementById('matchNumberBox').value = extraData[1];
   }
-  if (extraData[3] !== undefined) {
-    // document.getElementById('comment').value = extraData[3];
+  if (document.getElementById('comment') !== null && extraData[3] !== undefined) {
+    document.getElementById('comment').value = extraData[3];
   }
 }
 
