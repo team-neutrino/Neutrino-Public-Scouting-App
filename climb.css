@@ -37,6 +37,11 @@ td {
   font-size: 2vh;
 }
 
+.commentTitle {
+  color: white;
+  font-size: 7vh;
+}
+
 .autonClimbBody {
   background-color: rgb(7, 48, 18);
 }
