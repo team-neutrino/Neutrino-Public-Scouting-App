@@ -75,3 +75,11 @@
   font-size: 2vh;
   line-height: 1.51vw;
 }
+
+.autonBody{
+    background-color: rgb(8, 51, 48);
+}
+
+.teleopBody{
+    background-color: rgb(8, 10, 51);
+}
