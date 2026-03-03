@@ -16,12 +16,16 @@
 }
 
 .minusButton {
+    height: 15vh;
     width: 6vw;
     background-color: red;
+    font-size: 2vw;
 }
 
 .plusButton {
+    height: 15vh;
     width: 90%;
+    font-size: 2vw;
 }
 
 .passButton{
