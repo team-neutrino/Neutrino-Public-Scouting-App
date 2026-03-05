@@ -16,12 +16,16 @@
 }
 
 .minusButton {
+    height: 15vh;
     width: 6vw;
     background-color: red;
+    font-size: 2vw;
 }
 
 .plusButton {
+    height: 15vh;
     width: 90%;
+    font-size: 2vw;
 }
 
 .passButton{
@@ -51,10 +55,6 @@
     margin-left: -36%;
 }
 
-#next {
-    margin-left: 36%;
-}
-
 .no-border{
     border:none;
 }
@@ -74,4 +74,12 @@
   scrollbar-color: white rgba(0, 0, 0, 0.2);
   font-size: 2vh;
   line-height: 1.51vw;
+}
+
+.autonBody{
+    background-color: rgb(8, 51, 48);
+}
+
+.teleopBody{
+    background-color: rgb(8, 10, 51);
 }

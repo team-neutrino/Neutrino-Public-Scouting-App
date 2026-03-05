@@ -51,10 +51,10 @@
             document.getElementById('matchNumberBox').value = extraData[1];
             var climb = getList("climbList");
             if(climb[0] === "noTry"){
-                climb[0] = "";
+                climb[0] = "0";
             }
             if(climb[2] === "noTry"){
-                climb[2] = "";
+                climb[2] = "0";
             }
 
             qrcode.clear();
@@ -116,7 +116,7 @@
     <style id="changeStyle"></style>
 </head>
 
-<body onload="initQRCode();loadPage('qr')" id="body" style="overflow: scroll;">
+<body onload="initQRCode();loadPage('qr')" id="body" class="qrBody"style="overflow: scroll;">
     <table>
         <tr class="top" id="row1">
             <th class="topSideBox">

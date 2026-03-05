@@ -2,7 +2,7 @@ const pointList = [1, 4, 3]
 
 let extraData = []; //['teamNum', 'matchNum', 'scout', 'comment', 'alliance pick']
 var compressedList = []; //This is the list that collects all the IDs for the QR Code.
-var climbList = ["", false, "", false]; //['auton climb', auton backside, 'endgame climb', endgame backside]
+var climbList = ["0", false, "0", false]; //['auton climb', auton backside, 'endgame climb', endgame backside]
 var comments = ""; //Comments Box
 var blue1 = [1, 2];
 var blue2 = [3, 4];
@@ -116,7 +116,7 @@ function updateClimb(name, page) {
     climbIndex = 0;
   }
 
-  if (!(climbList[climbIndex] === "")) {
+  if (!(climbList[climbIndex] === "0")) {
     document.getElementById(climbList[climbIndex]).style.backgroundColor = "#8ac3d5"; // get rid of old style
   }
   climbList[climbIndex] = name;

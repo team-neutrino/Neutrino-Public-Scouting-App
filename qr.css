@@ -54,6 +54,10 @@ h2 {
   flex-direction: column;
 }
 
+.qrBody {
+  background-color: rgb(43, 7, 36);
+}
+
 #qrArea {
   padding: min(6vh, 6vw);
   border-radius: min(5vh, 5vw);

@@ -9,7 +9,7 @@
   <link rel="styleSheet" type="text/css" href="styleSheet.css">
 </head>
 
-<body id='body' style="overflow: scroll;" onload="loadPage('endgameClimb')">
+<body id='body' class="endgameClimbBody"style="overflow: scroll;" onload="loadPage('endgameClimb')">
   <table class="endGameTable" id="table">
     <tr class="yess id=" row1>
       <th class="topSideBox">
@@ -22,6 +22,7 @@
     </tr>
     <tr id="row2">
       <td rowspan="3">
+        <div class="commentTitle">Comments</div>
         <textarea id="comment" class="commentBox" placeholder="Unleash your imagination" onchange="commentEdit(this.value)"
           id="coment"></textarea>
       </td>

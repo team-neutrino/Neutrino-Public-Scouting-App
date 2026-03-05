@@ -37,6 +37,19 @@ td {
   font-size: 2vh;
 }
 
+.commentTitle {
+  color: white;
+  font-size: 7vh;
+}
+
+.autonClimbBody {
+  background-color: rgb(7, 48, 18);
+}
+
+.endgameClimbBody {
+  background-color: rgb(43, 11, 7);
+}
+
 #backsideButton {
   bottom: 51vh;
   background-color: rgb(227, 137, 20);
