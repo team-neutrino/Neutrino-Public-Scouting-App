@@ -3,9 +3,10 @@ const pointList = [1, 4, 3]
 let extraData = []; //['teamNum', 'matchNum', 'scout', 'comment', 'alliance pick']
 var compressedList = []; //This is the list that collects all the IDs for the QR Code.
 var climbList = ["0", false, "0", false]; //['auton climb', auton backside, 'endgame climb', endgame backside]
-var qualList = [false, false, false, false, false, false, false, false, false]
+var autonChecklist = ["", "", "", "", "", ""];
+var defenseChecklist = ["", "", ""];
 var teleopComments = "";
-var defenseComents = "";
+var defenseComments = "";
 var comments = ""; //Comments Box
 var blue1 = [967,
   6420,
@@ -493,9 +494,28 @@ function addAction(action, number) { //Used for buttons that have a data validat
   console.log(compressedList);
 }
 
-function addCheckbox(slot) {
-  qualList[slot] = !qualList[slot];
-  console.log(qualList);
+function addAutonCheckbox(slot, action) {
+  if (autonChecklist[slot] === "") {
+    autonChecklist[slot] = action;
+  } else {
+    autonChecklist[slot] = "";
+  }
+}
+
+function addDefenseCheckbox(slot, action) {
+  if (defenseChecklist[slot] === "") {
+    defenseChecklist[slot] = action;
+  } else {
+    defenseChecklist[slot] = "";
+  }
+}
+
+function addComments(id) {
+  if (id == "teleopComments") {
+    teleopComments = document.getElementById("teleopComments").value;
+  } else {
+    defenseComments = document.getElementById("defenseComments").value;
+  }
 }
 
 lastUpdatedTimestamp = 0
@@ -620,6 +640,10 @@ function saveData() {
   sessionStorage.setItem("extraData", JSON.stringify(extraData));
   sessionStorage.setItem("score", score.toString());
   sessionStorage.setItem("climbList", JSON.stringify(climbList));
+  sessionStorage.setItem("autonChecklist", JSON.stringify(autonChecklist));
+  sessionStorage.setItem("defenseChecklist", JSON.stringify(defenseChecklist));
+  sessionStorage.setItem("teleopComments", teleopComments);
+  sessionStorage.setItem("defenseComments", defenseComments);
 }
 
 function getData() {
@@ -627,9 +651,17 @@ function getData() {
   compressedList = getList("compressedList");
   extraData = getList("extraData");
   climbList = getList("climbList");
+  autonChecklist = getList("autonChecklist");
+  defenseChecklist = getList("defenseChecklist");
+  teleopComments = sessionStorage.getItem("teleopComments");
+  defenseComments = sessionStorage.getItem("defenseComments");
   console.log(compressedList);
   console.log(extraData);
   console.log(climbList);
+  console.log(autonChecklist);
+  console.log(defenseChecklist);
+  console.log(teleopComments);
+  console.log(defenseComments);
   if (document.getElementById('teamLog1') !== null) {
     updateLog();
   }
@@ -671,8 +703,25 @@ function displayBoxData() {
   if (extraData[1] !== undefined) {
     document.getElementById('matchNumberBox').value = extraData[1];
   }
-  if (document.getElementById('comment') !== null && extraData[3] !== undefined) {
-    document.getElementById('comment').value = extraData[3];
+  if (document.getElementById('Nothing') !== null) {
+    for (var i = 0; i < autonChecklist.length; i++) {
+      if (autonChecklist[i] !== "") {
+        document.getElementById(autonChecklist[i]).checked = true;
+      }
+    }
+  }
+  if (document.getElementById('Played Defense') !== null) {
+    for (var i = 0; i < defenseChecklist.length; i++) {
+      if (defenseChecklist[i] !== "") {
+        document.getElementById(defenseChecklist[i]).checked = true;
+      }
+    }
+  }
+  if (document.getElementById('teleopComments') !== null) {
+    document.getElementById('teleopComments').value = teleopComments;
+  }
+  if (document.getElementById('defenseComments') !== null) {
+    document.getElementById('defenseComments').value = defenseComments;
   }
 }
 

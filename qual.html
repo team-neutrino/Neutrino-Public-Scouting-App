@@ -29,57 +29,63 @@
         <tr>
             <td>
                 <label>
-                    <input type="checkbox" class="checkbox" onclick="addCheckbox(0)">
+                    <input type="checkbox" class="checkbox" id="Nothing" onclick="addAutonCheckbox(0, this.id)">
                     Nothing</label>
             </td>
             <td>
                 <label>
-                    <input type="checkbox" class="checkbox" onclick="addCheckbox(1)">
+                    <input type="checkbox" class="checkbox" id="Preload" onclick="addAutonCheckbox(1, this.id)">
                     Preload</label>
             </td>
             <td rowspan="4" colspan="2">
-                <textarea placeholder="Comments" class="commentBox"></textarea>
+                <textarea placeholder="Comments" class="commentBox" id="teleopComments"
+                    onchange="addComments(this.id)"></textarea>
             </td>
             <td rowspan="4" colspan="2">
-                <textarea placeholder="Comments" class="commentBox"></textarea>
+                <textarea placeholder="Comments" class="commentBox" id="defenseComments"
+                    onchange="addComments(this.id)"></textarea>
             </td>
             <td colspan="2">
                 <label>
-                    <input type="checkbox" class="checkbox" onclick="addCheckbox(6)">
+                    <input type="checkbox" class="checkbox" id="Played Defense"
+                        onclick="addDefenseCheckbox(0, this.id)">
                     Played Defense</label>
             </td>
         </tr>
         <tr>
             <td>
                 <label>
-                    <input type="checkbox" class="checkbox" onclick="addCheckbox(2)">
+                    <input type="checkbox" class="checkbox" id="Depot" onclick="addAutonCheckbox(2, this.id)">
                     Depot</label>
             </td>
             <td>
                 <label>
-                    <input type="checkbox" class="checkbox" onclick="addCheckbox(3)">
+                    <input type="checkbox" class="checkbox" id="Outpost" onclick="addAutonCheckbox(3, this.id)">
                     Outpost</label>
             </td>
             <td colspan="2">
                 <label>
-                    <input type="checkbox" class="checkbox" onclick="addCheckbox(7)">
+                    <input type="checkbox" class="checkbox" id="Played Against Defense"
+                        onclick="addDefenseCheckbox(1, this.id)">
                     Played Against Defense</label>
             </td>
         </tr>
         <tr>
             <td>
                 <label>
-                    <input type="checkbox" class="checkbox" onclick="addCheckbox(4)">
+                    <input type="checkbox" class="checkbox" id="Neutral Zone" onclick="addAutonCheckbox(4, this.id)">
                     Neutral Zone</label>
             </td>
             <td>
                 <label>
-                    <input type="checkbox" class="checkbox" onclick="addCheckbox(5)">
+                    <input type="checkbox" class="checkbox" id="More Neutral Zone"
+                        onclick="addAutonCheckbox(5, this.id)">
                     More Neutral Zone</label>
             </td>
             <td colspan="2">
                 <label>
-                    <input type="checkbox" class="checkbox" onclick="addCheckbox(8)">
+                    <input type="checkbox" class="checkbox" id="None of the Above"
+                        onclick="addDefenseCheckbox(2, this.id)">
                     None of the Above</label>
             </td>
         </tr>

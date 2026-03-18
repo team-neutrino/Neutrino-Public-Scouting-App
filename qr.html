@@ -50,6 +50,10 @@
             document.getElementById('teamNumberBox').value = extraData[0];
             document.getElementById('matchNumberBox').value = extraData[1];
             var climb = getList("climbList");
+            var autonChecklist = getList("autonChecklist");
+            var defenseChecklist = getList("defenseChecklist");
+            var teleopComments = sessionStorage.getItem("teleopComments");
+            var defenseComments = sessionStorage.getItem("defenseComments");
             if (climb[0] === "noTry") {
                 climb[0] = "0";
             }
@@ -65,13 +69,17 @@
                 "\t" +
                 extraData[2] +
                 "\t" +
-                extraData[3] +
-                "\t" +
                 extraData[4] +
                 "\t" +
-                climb +
+                sums.join(",") +
                 "\t" +
-                sums.join(",")
+                autonChecklist +
+                "\t" +
+                defenseChecklist +
+                "\t" +
+                teleopComments +
+                "\t" +
+                defenseComments
             );
         }
 
