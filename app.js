@@ -969,25 +969,36 @@ function toQuotes() {
   let quote = takeout[0];
   let author = takeout[1];
 
-  document.getElementById('body').innerHTML = '<div class="quoteDiv" id="insertQuote"></div>';
+  // document.getElementById('body').innerHTML = '<div class="quoteDiv" id="insertQuote"></div>';
   let insertQuote = document.getElementById('insertQuote');
-  let repeat = quote.length;
-  for (let i = 0; i < repeat; i++) {
-
-    setTimeout(() => {
-      insertQuote.innerHTML += quote[i];
-    }, 15 * i);
-
-  }
-  setTimeout(() => {
-    insertQuote.innerHTML += "<br><br><strong>" + author + "</strong>";
-    insertQuote.innerHTML += "<button onclick='window.location.href = `./index.html`' class='continuieButton' id='contineButton'>Continue</button>";
-    insertQuote.innerHTML += "<strong>Score: " + score + "</strong>";
-    var sums = Array(4).fill(0); //Compress List
+  var sums = Array(4).fill(0); //Compress List
     for (const period of compressedList) {
       sums[period[0]] += period[1];
     }
-    localStorage.setItem("oldCompList" + extraData[1], sums);
-    localStorage.setItem("oldExtraData" + extraData[1], extraData);
-  }, 20 * repeat);
+  const yesButton = document.getElementById("yesButton");
+  yesButton.innerHTML = "";
+  yesButton.style.transition = "transform 1s ease-out, background-color 0.6s ease-out";
+  yesButton.style.backgroundColor = "black";
+  yesButton.style.transform = "scale(15, 15)";
+  setTimeout(() => {
+    window.location.href = `./index.html`;
+  }, 1000);
+
+    
+
+  //   localStorage.setItem("oldCompList" + extraData[1], sums);
+  //   localStorage.setItem("oldExtraData" + extraData[1], extraData);
+  // // for (let i = 0; i < repeat; i++) {
+
+  // //   setTimeout(() => {
+  // //     insertQuote.innerHTML += quote[i];
+  // //   }, 15 * i);
+
+  // // }
+  // setTimeout(() => {
+  //   insertQuote.innerHTML += "<br><br><strong>" + author + "</strong>";
+  //   insertQuote.innerHTML += "<button onclick='window.location.href = `./index.html`' class='continuieButton' id='contineButton'>Continue</button>";
+  //   insertQuote.innerHTML += "<strong>Score: " + score + "</strong>";
+    
+  // }, 20 * repeat);
 }
