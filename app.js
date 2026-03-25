@@ -515,24 +515,26 @@ function toQuotes() {
   document.getElementById('changeStyle').innerHTML = "";
   extraData[1] = parseInt(extraData[1])
   sessionStorage.setItem('matchNumber', extraData[1] + 1);
-  let takeout = getQuote();
-  let quote = takeout[0];
-  let author = takeout[1];
+  // let takeout = getQuote();
+  // let quote = takeout[0];
+  // let author = takeout[1];
 
   // document.getElementById('body').innerHTML = '<div class="quoteDiv" id="insertQuote"></div>';
-  let insertQuote = document.getElementById('insertQuote');
+  // let insertQuote = document.getElementById('insertQuote');
   var sums = Array(4).fill(0); //Compress List
     for (const period of compressedList) {
       sums[period[0]] += period[1];
     }
   const yesButton = document.getElementById("yesButton");
+  const resetArea = document.getElementById("resetPopUp");
+  resetArea.style.transform = "rotateX(180deg) rotateZ(10deg)";
   yesButton.innerHTML = "";
   yesButton.style.transition = "transform 1s ease-out, background-color 0.6s ease-out";
   yesButton.style.backgroundColor = "black";
   yesButton.style.transform = "scale(15, 15)";
   setTimeout(() => {
     window.location.href = `./index.html`;
-  }, 1000);
+  }, 900);
 
     
 
